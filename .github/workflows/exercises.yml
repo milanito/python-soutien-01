@@ -1,0 +1,52 @@
+name: Check exercises
+
+on:
+  pull_request:
+
+jobs:
+  test-exercise:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Extract exercise number from branch name
+        id: extract_ex
+        run: |
+          echo "Branch: $GITHUB_HEAD_REF"
+
+          # Expected format: username@N where N is 1, 2, 3, ...
+          BRANCH_NAME="$GITHUB_HEAD_REF"
+
+          # Extract part after @
+          EX_NUM="${BRANCH_NAME##*@}"
+
+          if ! echo "$EX_NUM" | grep -Eq '^[0-9]+$'; then
+            echo "Could not extract a numeric exercise number from branch name: $BRANCH_NAME"
+            exit 1
+          fi
+
+          # Pad to two digits because tests are named test_ex01.py, test_ex02.py, ...
+          EX_NUM_PADDED=$(printf "%02d" "$EX_NUM")
+
+          echo "EX_NUM=$EX_NUM" >> $GITHUB_ENV
+          echo "EX_NUM_PADDED=$EX_NUM_PADDED" >> $GITHUB_ENV
+
+          echo "Detected exercise number: $EX_NUM (padded: $EX_NUM_PADDED)"
+
+      - name: Install pytest
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+
+      - name: Run tests for this exercise
+        run: |
+          echo "Running tests for exercise: $EX_NUM_PADDED"
+          ls tests
+          pytest "tests/test_ex${EX_NUM_PADDED}.py"
