@@ -16,8 +16,10 @@ def solve(username: str) -> None:
     # TODO: implement this exercise
     # Example placeholder (remove when implementing):
     # print(len(username))
-    pass
-
+    n = len(username)
+    values = [(i * n + 3) % 97 for i in range(n)]
+    values.sort()
+    print(" ".join(str(v) for v in values))
 
 if __name__ == "__main__":  # pragma: no cover
     import sys
