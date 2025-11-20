@@ -48,5 +48,5 @@ jobs:
       - name: Run tests for this exercise
         run: |
           echo "Running tests for exercise: $EX_NUM_PADDED"
-          ls tests
+          export PYTHONPATH=.
           pytest "tests/test_ex${EX_NUM_PADDED}.py"
