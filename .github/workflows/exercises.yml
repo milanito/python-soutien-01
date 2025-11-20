@@ -21,10 +21,7 @@ jobs:
         run: |
           echo "Branch: $GITHUB_HEAD_REF"
 
-          # Expected format: username@N where N is 1, 2, 3, ...
           BRANCH_NAME="$GITHUB_HEAD_REF"
-
-          # Extract part after @
           EX_NUM="${BRANCH_NAME##*@}"
 
           if ! echo "$EX_NUM" | grep -Eq '^[0-9]+$'; then
@@ -32,21 +29,42 @@ jobs:
             exit 1
           fi
 
-          # Pad to two digits because tests are named test_ex01.py, test_ex02.py, ...
           EX_NUM_PADDED=$(printf "%02d" "$EX_NUM")
 
           echo "EX_NUM=$EX_NUM" >> $GITHUB_ENV
           echo "EX_NUM_PADDED=$EX_NUM_PADDED" >> $GITHUB_ENV
 
-          echo "Detected exercise number: $EX_NUM (padded: $EX_NUM_PADDED)"
+          # Map exercise number to folder name (same mapping as run_exercise.sh)
+          case "$EX_NUM_PADDED" in
+            01) EX_NAME="ex01_sum" ;;
+            02) EX_NAME="ex02_max_in_list" ;;
+            03) EX_NAME="ex03_is_sorted" ;;
+            04) EX_NAME="ex04_selection_sort" ;;
+            05) EX_NAME="ex05_binary_search" ;;
+            06) EX_NAME="ex06_two_sum_closest" ;;
+            *)
+              echo "Unsupported exercise number: $EX_NUM"
+              exit 1
+              ;;
+          esac
+
+          echo "EX_NAME=$EX_NAME" >> $GITHUB_ENV
+
+          echo "Detected exercise number: $EX_NUM (padded: $EX_NUM_PADDED) for folder: $EX_NAME"
 
       - name: Install pytest
         run: |
           python -m pip install --upgrade pip
-          pip install pytest
+          python -m pip install pytest
+
+      # NEW: static check to forbid certain helpers
+      - name: Check for forbidden helpers
+        run: |
+          echo "Running static checks for $EX_NAME"
+          python check_forbidden_api.py "$EX_NAME"
 
       - name: Run tests for this exercise
         run: |
-          echo "Running tests for exercise: $EX_NUM_PADDED"
-          ls tests
+          echo "Running tests for exercise: $EX_NUM_PADDED ($EX_NAME)"
+          export PYTHONPATH=.
           pytest "tests/test_ex${EX_NUM_PADDED}.py"
