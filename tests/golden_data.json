@@ -1,0 +1,158 @@
+{
+  "ex01_sum": [
+    {
+      "username": "a",
+      "expected": "1"
+    },
+    {
+      "username": "ab",
+      "expected": "3"
+    },
+    {
+      "username": "abc",
+      "expected": "6"
+    },
+    {
+      "username": "validator",
+      "expected": "45"
+    },
+    {
+      "username": "matthieu",
+      "expected": "36"
+    },
+    {
+      "username": "matthieu.rondeau",
+      "expected": "136"
+    }
+  ],
+  "ex02_max_in_list": [
+    {
+      "username": "ab",
+      "expected": "5"
+    },
+    {
+      "username": "abcd",
+      "expected": "15"
+    },
+    {
+      "username": "validator",
+      "expected": "75"
+    },
+    {
+      "username": "matthieu",
+      "expected": "59"
+    },
+    {
+      "username": "matthieu.rondeau",
+      "expected": "83"
+    }
+  ],
+  "ex03_is_sorted": [
+    {
+      "username": "a",
+      "expected": "1"
+    },
+    {
+      "username": "ab",
+      "expected": "1"
+    },
+    {
+      "username": "abc",
+      "expected": "1"
+    },
+    {
+      "username": "abcdef",
+      "expected": "1"
+    },
+    {
+      "username": "validator",
+      "expected": "1"
+    },
+    {
+      "username": "matthieu",
+      "expected": "1"
+    },
+    {
+      "username": "matthieu.rondeau",
+      "expected": "0"
+    }
+  ],
+  "ex04_selection_sort": [
+    {
+      "username": "ab",
+      "expected": "3 5"
+    },
+    {
+      "username": "abcd",
+      "expected": "3 7 11 15"
+    },
+    {
+      "username": "abcdef",
+      "expected": "3 9 15 21 27 33"
+    },
+    {
+      "username": "validator",
+      "expected": "3 12 21 30 39 48 57 66 75"
+    },
+    {
+      "username": "matthieu",
+      "expected": "3 11 19 27 35 43 51 59"
+    },
+    {
+      "username": "matthieu.rondeau",
+      "expected": "1 2 3 17 18 19 33 34 35 49 50 51 66 67 82 83"
+    }
+  ],
+  "ex05_binary_search": [
+    {
+      "username": "ab",
+      "expected": "0"
+    },
+    {
+      "username": "abc",
+      "expected": "0"
+    },
+    {
+      "username": "abcd",
+      "expected": "0"
+    },
+    {
+      "username": "validator",
+      "expected": "0"
+    },
+    {
+      "username": "matthieu",
+      "expected": "0"
+    },
+    {
+      "username": "matthieu.rondeau",
+      "expected": "0"
+    }
+  ],
+  "ex06_two_sum_closest": [
+    {
+      "username": "abc",
+      "expected": "15"
+    },
+    {
+      "username": "abcd",
+      "expected": "26"
+    },
+    {
+      "username": "abcdef",
+      "expected": "48"
+    },
+    {
+      "username": "validator",
+      "expected": "96"
+    },
+    {
+      "username": "matthieu",
+      "expected": "78"
+    },
+    {
+      "username": "matthieu.rondeau",
+      "expected": "118"
+    }
+  ]
+}

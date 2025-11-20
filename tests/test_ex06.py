@@ -1,28 +1,30 @@
-"""Basic smoke test for ex06_two_sum_closest (exercise 06).
-
-You can later replace this with a real expected value for a given username.
-"""
-
 import io
+import json
 import sys
+from pathlib import Path
 
 from ex06_two_sum_closest.exercise import solve
 
 
-def test_ex06_prints_something():
-    buf = io.StringIO()
-    username = "testuser"
+def load_cases():
+    data = json.loads(Path("tests/golden_data.json").read_text())
+    return data["ex06_two_sum_closest"]
 
-    # capture stdout
-    old_stdout = sys.stdout
+
+def run(username: str) -> str:
+    buf = io.StringIO()
+    old = sys.stdout
     sys.stdout = buf
     try:
         solve(username)
     finally:
-        sys.stdout = old_stdout
+        sys.stdout = old
+    return buf.getvalue().strip()
 
-    output = buf.getvalue().strip()
 
-    # For now we just ensure something was printed.
-    # Later you can change this to check against an exact expected string.
-    assert output != ""
+def test_ex06_multiple_usernames():
+    for case in load_cases():
+        username = case["username"]
+        expected = case["expected"]
+        output = run(username)
+        assert output == expected, f"username={username}, expected={expected}, got={output}"

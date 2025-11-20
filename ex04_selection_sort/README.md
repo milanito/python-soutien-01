@@ -1,11 +1,58 @@
-# ex04_selection_sort
+# ex04_selection_sort / README.md
 
-This exercise is part of the progressive algorithm series.
+## Exercise 4 — Implement selection sort
 
-Open **exercise.py** and implement the function:
+### Goal
 
-    def solve(username: str) -> None:
-        """Compute and print the result for this exercise."""
-        pass
+Learn a fundamental O(n²) sorting algorithm.
 
-Do **not** print extra text, only the final answer. Tests will call this function.
+### Instructions
+
+You receive `username`.
+Let `n = len(username)`.
+
+Generate the same list as before:
+
+```
+values[i] = (i*n + 3) % 97
+```
+
+Sort the list **using selection sort only**.
+
+Then print all numbers on one line, separated by a single space.
+No extra spaces.
+
+### Restrictions
+
+Forbidden:
+
+* `sorted()`
+* `min()` inside your sorting loop
+* `.sort()`
+
+You must manually:
+
+* For each position `i`, find the smallest element in `values[i:]`
+* Swap it with `values[i]`
+
+### Example
+
+If the list is:
+
+```
+30 12 48 3
+```
+
+After selection sort it becomes:
+
+```
+3 12 30 48
+```
+
+Your output must be exactly:
+
+```
+3 12 30 48
+```
+
+

@@ -1,11 +1,48 @@
-# ex02_max_in_list
+# ex02_max_in_list / README.md
 
-This exercise is part of the progressive algorithm series.
+## Exercise 2 — Maximum value in a generated list
 
-Open **exercise.py** and implement the function:
+### Goal
 
-    def solve(username: str) -> None:
-        """Compute and print the result for this exercise."""
-        pass
+Learn to build a list using a formula and scan it manually to find the maximum.
 
-Do **not** print extra text, only the final answer. Tests will call this function.
+### Instructions
+
+You receive a string `username`.
+Let `n = len(username)`.
+
+Construct a list:
+
+```
+values[i] = (i * n + 3) % 97
+```
+
+for each `i` from `0` to `n-1`.
+
+Then print **the maximum value** in that list.
+
+### Restrictions
+
+You may **not** use `max()` or `sorted()` or `.sort()`.
+Scan the list manually.
+
+### Example
+
+If username = `ab` → length = 2
+
+List:
+
+```
+i=0 → (0*2+3)%97 = 3
+i=1 → (1*2+3)%97 = 5
+```
+
+Maximum = `5`
+
+Output:
+
+```
+5
+```
+
+
