@@ -16,7 +16,7 @@ def solve(username: str) -> None:
     # TODO: implement this exercise
     # Example placeholder (remove when implementing):
     # print(len(username))
-    pass
+    print("1")
 
 
 if __name__ == "__main__":  # pragma: no cover
