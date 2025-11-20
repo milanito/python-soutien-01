@@ -1,28 +1,19 @@
-"""Basic smoke test for ex01_sum (exercise 01).
-
-You can later replace this with a real expected value for a given username.
-"""
-
 import io
 import sys
-
 from ex01_sum.exercise import solve
 
+VALIDATOR = "validator"
+EXPECTED = "45"
 
-def test_ex01_prints_something():
+def run(username):
     buf = io.StringIO()
-    username = "testuser"
-
-    # capture stdout
-    old_stdout = sys.stdout
+    old = sys.stdout
     sys.stdout = buf
     try:
         solve(username)
     finally:
-        sys.stdout = old_stdout
+        sys.stdout = old
+    return buf.getvalue().strip()
 
-    output = buf.getvalue().strip()
-
-    # For now we just ensure something was printed.
-    # Later you can change this to check against an exact expected string.
-    assert output != ""
+def test_ex01():
+    assert run(VALIDATOR) == EXPECTED

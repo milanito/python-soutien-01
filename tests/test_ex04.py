@@ -1,28 +1,19 @@
-"""Basic smoke test for ex04_selection_sort (exercise 04).
-
-You can later replace this with a real expected value for a given username.
-"""
-
 import io
 import sys
-
 from ex04_selection_sort.exercise import solve
 
+VALIDATOR = "validator"
+EXPECTED = "3 12 21 30 39 48 57 66 75"
 
-def test_ex04_prints_something():
+def run(username):
     buf = io.StringIO()
-    username = "testuser"
-
-    # capture stdout
-    old_stdout = sys.stdout
+    old = sys.stdout
     sys.stdout = buf
     try:
         solve(username)
     finally:
-        sys.stdout = old_stdout
+        sys.stdout = old
+    return buf.getvalue().strip()
 
-    output = buf.getvalue().strip()
-
-    # For now we just ensure something was printed.
-    # Later you can change this to check against an exact expected string.
-    assert output != ""
+def test_ex04():
+    assert run(VALIDATOR) == EXPECTED
